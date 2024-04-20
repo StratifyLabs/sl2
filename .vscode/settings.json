@@ -1,0 +1,10 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/cmake_link",
+    "clangd.arguments": [
+        "-compile-commands-dir=cmake_link"
+    ],
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "search.useIgnoreFiles": false,
+    "search.useGlobalIgnoreFiles": true,
+    "cmake.configureOnOpen": false
+}
