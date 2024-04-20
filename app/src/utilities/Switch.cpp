@@ -602,6 +602,16 @@ int Switch::show_changes() {
   };
 
   {
+    auto header = get_version_header("v2.0");
+    printer().newline();
+    show_list(
+      "New Features",
+      StringViewList()
+        .push_back("First public source code releases")
+        .push_back("Removed requirement for adding cloud API key"));
+  }
+
+  {
     auto header = get_version_header("v1.20");
     printer().newline();
 
