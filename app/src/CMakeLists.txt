@@ -1,0 +1,97 @@
+
+set(SOURCES
+	sos_crt_symbols.hpp
+	sos_crt_symbols.cpp
+	main.cpp
+	App.cpp
+	App.hpp
+	Connector.cpp
+	Connector.hpp
+	Group.cpp
+	Group.hpp
+	Command.cpp
+	Command.hpp
+
+	SlPrinter.cpp
+	SlPrinter.hpp
+
+	groups/Terminal.cpp
+	groups/Terminal.hpp
+	groups/Usb.cpp
+	groups/Usb.hpp
+	groups/UserGroup.cpp
+	groups/UserGroup.hpp
+	groups/HardwareGroup.cpp
+	groups/HardwareGroup.hpp
+	groups/TeamGroup.cpp
+	groups/TeamGroup.hpp
+	groups/KeysGroup.cpp
+	groups/KeysGroup.hpp
+	groups/Thing.cpp
+	groups/Thing.hpp
+	groups/Connection.cpp
+	groups/Connection.hpp
+	groups/DebugTrace.cpp
+	groups/DebugTrace.hpp
+	groups/Bench.cpp
+	groups/Bench.hpp
+	groups/Mcu.cpp
+	groups/Mcu.hpp
+	groups/Cloud.cpp
+	groups/Cloud.hpp
+	groups/Application.cpp
+	groups/Application.hpp
+	groups/FileSystem.cpp
+	groups/FileSystem.hpp
+	#groups/Sdk.cpp
+	#groups/Sdk.hpp
+	groups/Framework.cpp
+	groups/Framework.hpp
+	#groups/Script.cpp
+	#groups/Script.hpp
+	groups/Task.cpp
+	groups/Task.hpp
+	groups/Settings.cpp
+	groups/Settings.hpp
+	groups/Report.cpp
+	groups/Report.hpp
+	groups/Admin.cpp
+	groups/Admin.hpp
+	groups/Bsp.cpp
+	groups/Bsp.hpp
+
+	groups/devices/Flash.cpp
+	groups/devices/Flash.hpp
+
+	settings/PackageSettings.hpp
+	settings/SessionSettings.hpp
+	settings/Credentials.hpp
+	settings/HardwareSettings.hpp
+	settings/TestSettings.hpp
+	settings/GlobalSettings.hpp
+	settings/LocalSettings.hpp
+	settings/CloudSettings.hpp
+	settings/FilePathSettings.hpp
+	settings/WorkspaceSettings.cpp
+	settings/WorkspaceSettings.hpp
+
+	utilities/LocalServer.cpp
+	utilities/LocalServer.hpp
+	utilities/Switch.cpp
+	utilities/Switch.hpp
+	utilities/Process.cpp
+	utilities/Process.hpp
+	utilities/GcovParser.cpp
+	utilities/GcovParser.hpp
+	utilities/Packager.cpp
+	utilities/Packager.hpp
+	utilities/DeviceExecutionContext.cpp
+	utilities/DeviceExecutionContext.hpp
+	utilities/OperatingSystem.cpp
+	utilities/OperatingSystem.hpp
+	utilities/Updater.cpp
+	utilities/Updater.hpp
+	utilities/Shortcut.cpp
+	utilities/Shortcut.hpp
+
+	PARENT_SCOPE)
