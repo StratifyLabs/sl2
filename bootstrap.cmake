@@ -13,6 +13,8 @@ execute_process(
 
 message(STATUS "Running ${BOOTSTRAP_SCRIPT} using SDK path: ${SDK_DIRECTORY}")
 
+set(CMSDK_GENERATOR "Unix Makefiles")
+
 execute_process(
-	COMMAND cmake -DCMSDK_SDK_PATH=${SDK_DIRECTORY} -P ${DEPENDENCIES_DIRECTORY}/CMakeSDK/scripts/bootstrap.cmake
+	COMMAND cmake -DCMSDK_SDK_PATH=${SDK_DIRECTORY} -DCMSDK_GENERATOR=${CMSDK_GENERATOR} -P ${DEPENDENCIES_DIRECTORY}/CMakeSDK/scripts/bootstrap.cmake
 )
