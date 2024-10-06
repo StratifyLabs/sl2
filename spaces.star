@@ -37,12 +37,13 @@ add_stratify_labs_library("SwdAPI", "v1.2")
 add_stratify_labs_library("ServiceAPI", "v1.2")
 add_stratify_labs_library("UsbAPI", "v1.3")
 
+sl2_path = info.get_path_to_checkout()
 
 checkout.add_asset(
     rule = {"name": "CMakeLists-Superproject"},
     asset = {
         "destination": "CMakeLists.txt",
-        "content": fs.read_file_to_string("spaces/CMakeLists.txt")
+        "content": fs.read_file_to_string("{}/spaces/CMakeLists.txt".format(sl2_path))
     }
 )
 
