@@ -26,6 +26,7 @@ def add_stratify_labs_library(
 )
 
 add_stratify_labs_library("CMakeSDK", "v2.1")
+add_stratify_labs_library("API", "v1.7")
 add_stratify_labs_library("StratifyOS", "v4.3")
 add_stratify_labs_library("JsonAPI", "v1.5")
 add_stratify_labs_library("InetAPI", "v1.5")
