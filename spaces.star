@@ -2,7 +2,7 @@
 
 """
 
-load("spaces-starlark-sdk/github.com/packages/cli/cli/v2.60.1.star", gh_platforms = "platforms")
+load("spaces-starlark-sdk/packages/github.com/cli/cli/v2.60.1.star", gh_platforms = "platforms")
 load("spaces-starlark-sdk/star/gh.star", "add_publish_archive")
 
 checkout.add_platform_archive(
