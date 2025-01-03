@@ -2,25 +2,23 @@
 
 """
 
-load("//spaces-starlark-sdk/packages/github.com/cli/cli/v2.60.1.star", gh_platforms = "platforms")
-load("//spaces-starlark-sdk/star/gh.star", "add_publish_archive")
+load("//@star/packages/gh.star", "gh_add")
+load("//@star/sdk/gh.star", "gh_add_publish_archive")
+load("//@star/sdk/run.star", "run_add_exec")
 
-checkout.add_platform_archive(
-    rule = {"name": "gh1"},
-    platforms = gh_platforms
-)
+gh_add("gh1", "v2.64.0")
 
 def add_stratify_labs_library(
-    name,
-    revision):
+        name,
+        revision):
     checkout.add_repo(
-    rule = { "name": "libs/{}".format(name)},
-    repo = {
-        "url": "https://github.com/StratifyLabs/{}".format(name),
-        "rev": revision,
-        "checkout": "Revision"
-    }
-)
+        rule = {"name": "libs/{}".format(name)},
+        repo = {
+            "url": "https://github.com/StratifyLabs/{}".format(name),
+            "rev": revision,
+            "checkout": "Revision",
+        },
+    )
 
 add_stratify_labs_library("CMakeSDK", "v2.1")
 add_stratify_labs_library("API", "v1.7")
@@ -41,75 +39,67 @@ checkout.add_asset(
     rule = {"name": "CMakeLists-Superproject"},
     asset = {
         "destination": "CMakeLists.txt",
-        "content": fs.read_file_to_string("{}/spaces/CMakeLists.txt".format(sl2_path))
-    }
+        "content": fs.read_file_to_string("{}/spaces/CMakeLists.txt".format(sl2_path)),
+    },
 )
 
 sysroot = info.get_absolute_path_to_workspace() + "/sysroot"
 
-run.add_exec(
-    rule = {"name": "configure_cmsdk"},
-    exec = {
-        "command": "cmake",
-        "args": [
-            "-GNinja",
-            "-Slibs/CMakeSDK",
-            "-Bbuild/CMakeSDK/cmake_link",
-            "-DCMSDK_LOCAL_PATH={}".format(sysroot),
-        ]
-    },
+run_add_exec(
+    "configure_cmsdk",
+    command = "cmake",
+    args = [
+        "-GNinja",
+        "-Slibs/CMakeSDK",
+        "-Bbuild/CMakeSDK/cmake_link",
+        "-DCMSDK_LOCAL_PATH={}".format(sysroot),
+    ],
 )
 
-run.add_exec(
-    rule = {"name": "install_cmsdk", "deps": ["configure_cmsdk"]},
-    exec = {
-        "command": "ninja",
-        "args": [
-            "-Cbuild/CMakeSDK/cmake_link",
-            "install",
-        ]
-    },
+run_add_exec(
+    "install_cmsdk",
+    deps = ["configure_cmsdk"],
+    command = "ninja",
+    args = [
+        "-Cbuild/CMakeSDK/cmake_link",
+        "install",
+    ],
 )
 
-run.add_exec(
-    rule = {"name": "configure"},
-    exec = {
-        "command": "cmake",
-        "args": [
-            "-GNinja",
-            "-Bbuild/cmake_link",
-        ],
-    },
+run_add_exec(
+    "configure",
+    command = "cmake",
+    args = [
+        "-GNinja",
+        "-Bbuild/cmake_link",
+    ],
 )
 
-run.add_exec(
-    rule = {"name": "build", "deps": ["configure", "install_cmsdk"]},
-    exec = {
-        "command": "ninja",
-        "args": [
-            "-Cbuild/cmake_link",
-        ],
-    },
+run_add_exec(
+    "build",
+    deps = ["configure", "install_cmsdk"],
+    command = "ninja",
+    args = [
+        "-Cbuild/cmake_link",
+    ],
 )
 
 suffix = ".exe" if info.is_platform_windows() else ""
 
-run.add_exec(
-    rule = {"name": "install", "deps": ["build"]},
-    exec = {
-        "command": "cp",
-        "args": [
-            "sl2/app/build_release_link/sl_release_link{}".format(suffix),
-            "build/sl{}".format(suffix)
-        ],
-    },
+run_add_exec(
+    "install",
+    deps = ["build"],
+    command = "cp",
+    args = [
+        "sl2/app/build_release_link/sl_release_link{}".format(suffix),
+        "build/sl{}".format(suffix),
+    ],
 )
 
-
-add_publish_archive(
+gh_add_publish_archive(
     name = "sl",
     input = "build/sl",
     version = "2.0.1",
     deploy_repo = "https://github.com/StratifyLabs/sl2",
-    deps = ["install"]
+    deps = ["install"],
 )
