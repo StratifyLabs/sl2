@@ -2,9 +2,9 @@
 
 """
 
-load("//@star/packages/gh.star", "gh_add")
-load("//@star/sdk/gh.star", "gh_add_publish_archive")
-load("//@star/sdk/run.star", "run_add_exec")
+load("//@star/packages/star/gh.star", "gh_add")
+load("//@star/sdk/star/gh.star", "gh_add_publish_archive")
+load("//@star/sdk/star/run.star", "run_add_exec")
 
 gh_add("gh1", "v2.64.0")
 
