@@ -69,6 +69,7 @@ run_add_exec(
 run_add_exec(
     "configure",
     command = "cmake",
+    deps = ["install_cmsdk"],
     args = [
         "-GNinja",
         "-Bbuild/cmake_link",
