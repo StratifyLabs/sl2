@@ -5,8 +5,7 @@ project(sl-SDK)
 set(API_IS_SDK TRUE CACHE INTERNAL "Build SDK projects")
 option(IS_PULL "Pull SDK projects" ON)
 
-set(BASE_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/dependencies)
-file(MAKE_DIRECTORY ${BASE_DIRECTORY})
+set(BASE_DIRECTORY $ENV{SPACES_WORKSPACE}/libs)
 
 message(STATUS "Base directory ${BASE_DIRECTORY}")
 
@@ -18,26 +17,25 @@ endmacro()
 include(CTest)
 
 set(STRATIFYOS_LWIP_PATH
-	${CMAKE_CURRENT_SOURCE_DIR}/../InetAPI/lwip/include
-	${CMAKE_CURRENT_SOURCE_DIR}/../InetAPI/lwip/lwip-2.1.2/src/include
+	${BASE_DIRECTORY}/InetAPI/lwip/include
+	${BASE_DIRECTORY}/InetAPI/lwip/lwip-2.1.2/src/include
 	CACHE INTERNAL "LWIP INCLUDE PATHS")
 
-
-sdk_add_subdirectory(API v1.7)
+add_subdirectory(${BASE_DIRECTORY}/API API)
 include(${BASE_DIRECTORY}/API/libraries/API.cmake)
 
 set(MBEDTLS_CONFIG_FILE ${CMAKE_CURRENT_SOURCE_DIR}/config/mbedtls/config.h CACHE INTERNAL "MBEDTLS config file")
 
-sdk_add_subdirectory(StratifyOS v4.3)
-sdk_add_subdirectory(JsonAPI v1.5)
-sdk_add_subdirectory(InetAPI v1.5)
-sdk_add_subdirectory(CryptoAPI v1.4)
-sdk_add_subdirectory(SosAPI v1.4)
-sdk_add_subdirectory(HalAPI v1.3)
-sdk_add_subdirectory(CloudAPI v1.3)
-sdk_add_subdirectory(SwdAPI v1.2)
-sdk_add_subdirectory(ServiceAPI v1.2)
-sdk_add_subdirectory(UsbAPI v1.3)
+add_subdirectory(${BASE_DIRECTORY}/StratifyOS StratifyOS)
+add_subdirectory(${BASE_DIRECTORY}/JsonAPI JsonAPI)
+add_subdirectory(${BASE_DIRECTORY}/InetAPI InetAPI)
+add_subdirectory(${BASE_DIRECTORY}/CryptoAPI CryptoAPI)
+add_subdirectory(${BASE_DIRECTORY}/SosAPI SosAPI)
+add_subdirectory(${BASE_DIRECTORY}/HalAPI HalAPI)
+add_subdirectory(${BASE_DIRECTORY}/CloudAPI CloudAPI)
+add_subdirectory(${BASE_DIRECTORY}/SwdAPI SwdAPI)
+add_subdirectory(${BASE_DIRECTORY}/ServiceAPI ServiceAPI)
+add_subdirectory(${BASE_DIRECTORY}/UsbAPI UsbAPI)
 
 
 

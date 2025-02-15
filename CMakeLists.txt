@@ -1,7 +1,5 @@
 cmake_minimum_required (VERSION 3.18)
 
-set(SDK_DIRECTORY ${CMAKE_SOURCE_DIR}/SDK)
-set(CMSDK_LOCAL_PATH ${SDK_DIRECTORY}/local)
 
 set(CMAKE_MODULE_PATH ${CMSDK_LOCAL_PATH}/cmake)
 set(CMAKE_TOOLCHAIN_FILE ${CMAKE_MODULE_PATH}/cmsdk-toolchain.cmake)
