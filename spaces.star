@@ -11,10 +11,14 @@ load(
 )
 load(
     "//@star/sdk/star/info.star",
-    "info_assert_member_semver",
-    "info_get_path_to_member_with_rev",
     "info_is_platform_windows",
     "info_set_minimum_version",
+)
+load(
+    "//@star/sdk/star/ws.star",
+    "workspace_assert_member_semver",
+    "workspace_get_path_to_member_with_rev",
+    "workspace_get_absolute_path"
 )
 load("//@star/sdk/star/cmake.star", "cmake_add_configure_build_install")
 load("//@star/sdk/star/shell.star", "cp")
@@ -22,12 +26,12 @@ load("//@star/sdk/star/run.star", "run_add_exec")
 
 info_set_minimum_version("0.12.6")
 
-info_assert_member_semver(
+workspace_assert_member_semver(
     "https://github.com/work-spaces/sdk",
     semver = ">=0.1.2",
 )
 
-SL2_PATH = info_get_path_to_member_with_rev(
+SL2_PATH = workspace_get_path_to_member_with_rev(
     "https://github.com/StratifyLabs/sl2",
     rev = None,
 )
@@ -63,7 +67,7 @@ checkout_add_asset(
     content = fs.read_file_to_string("{}/spaces/CMakeLists.txt".format(SL2_PATH)),
 )
 
-BUILD_INSTALL = info.get_absolute_path_to_workspace() + "/build/install"
+BUILD_INSTALL = workspace_get_absolute_path() + "/build/install"
 
 CONFIGURE_ARGS = [
     "-GNinja",
