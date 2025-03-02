@@ -22,7 +22,7 @@ load(
 )
 load("//@star/sdk/star/cmake.star", "cmake_add_configure_build_install")
 load("//@star/sdk/star/shell.star", "cp")
-load("//@star/sdk/star/run.star", "run_add_exec")
+load("//@star/sdk/star/run.star", "run_add_exec", "RUN_LOG_LEVEL_APP")
 
 info_set_minimum_version("0.12.6")
 
@@ -106,7 +106,9 @@ run_add_exec(
         "--version",
         "--vanilla"
     ],
-    deps = ["install"]
+    deps = ["install"],
+    log_level = RUN_LOG_LEVEL_APP,
+    help = "Run the resulting sl binary"
 )
 
 gh_add_publish_archive(
